@@ -45,3 +45,5 @@ lost+found
 # ignore meson build directories
 
 build-*/
+scripts/do-arm-wii-configure
+scripts/cross-arm-wii-eabi.txt

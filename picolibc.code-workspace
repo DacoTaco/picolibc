@@ -1,0 +1,22 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"*.s": "c",
+			"*.tcc": "c",
+			"string": "c",
+			"string_view": "c",
+			"stddef.h": "c",
+			"stdint.h": "c",
+			"stdint-gcc.h": "c",
+			"arm_asm.h": "c",
+			"*.inc": "c",
+			"cstdint": "c",
+			"acle-compat.h": "c"
+		}
+	}
+}
