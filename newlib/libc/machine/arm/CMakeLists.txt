@@ -50,4 +50,5 @@ picolibc_sources_flags("-fno-builtin"
   memset.S
   strlen.c
   strlen.S
+  strncpy.c
   )

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013-2015 ARM Ltd
+ * Copyright (c) 2009 ARM Ltd
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -26,25 +26,23 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/* The structure of the following #if #else #endif conditional chain
-   must match the chain in memcpy-stub.c.  */
+#ifdef __STARLET__
+#include <stdio.h>
 
-#include <picolibc.h>
+#define __SYSCALL(_name) __attribute__((weak)) __syscall_##_name
+#define __has_syscall(_name) (&__syscall_##_name)
 
-#ifndef __STARLET__
-#include "machine/acle-compat.h"
+extern int __SYSCALL (stdout_putc)(char c, FILE *file);
+extern int __SYSCALL (exit)(int code);
 
-#if defined (__OPTIMIZE_SIZE__) || defined (PREFER_SIZE_OVER_SPEED)
-  /* Defined in memcpy-stub.c.  */
+static FILE __stdout = FDEV_SETUP_STREAM(__syscall_stdout_putc, NULL, NULL, _FDEV_SETUP_WRITE);
+FILE *const stdout = &__stdout;
 
-#elif (__ARM_ARCH >= 7 && __ARM_ARCH_PROFILE == 'A' \
-       && defined (__ARM_FEATURE_UNALIGNED))
-#include "memcpy-armv7a.S"
-#elif __ARM_ARCH_ISA_THUMB == 2 && !__ARM_ARCH_ISA_ARM
-#include "memcpy-armv7m.S"
-#else
-  /* Defined in memcpy-stub.c.  */
+[[noreturn]] void _exit (int status)
+{
+    __syscall_exit(status);
+    for (;;);
+}
 
-#endif
 
 #endif

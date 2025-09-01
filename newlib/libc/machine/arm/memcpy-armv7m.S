@@ -81,6 +81,7 @@
 #error "Illegal __OPT_MID_BLOCK_SIZE"
 #endif
 
+#ifndef __STARLET__
 #define END_UNROLL .endr
 
 	.syntax unified
@@ -348,3 +349,4 @@ memcpy:
 	.cantunwind
 	.fnend
 	.size	memcpy, .-memcpy
+#endif

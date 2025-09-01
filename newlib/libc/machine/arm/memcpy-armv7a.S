@@ -108,7 +108,7 @@
    below will need adjustment to compensate.  */
 
 #define prefetch_lines	5
-
+#ifndef __STARLET__
 #ifdef USE_VFP
 	.macro	cpy_line_vfp vreg, base
 	vstr	\vreg, [dst, #\base]
@@ -624,3 +624,5 @@ def_fn memcpy p2align=6
 	bx	lr
 
 	.size	memcpy, . - memcpy
+
+#endif

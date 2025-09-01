@@ -16,7 +16,7 @@ installPath=$(realpath $1)
 
 echo -e "#!/bin/sh\n#\nexec \"\$(dirname \"\$0\")\"/do-configure arm-wii-eabi \\
 \t-Dio-c99-formats=true -Dio-long-long=true -Dio-pos-args=true -Dtests=false -Dmultilib=false -Dpicocrt=false -Dpicocrt-lib=false -Dsemihost=false \\
-\t-Dnewlib-retargetable-locking=false -Dnewlib-multithread=false -Dthread-local-storage=false -Dpicolib=true -Dspecsdir=none -Dtinystdio=true \\
+\t-Dnewlib-retargetable-locking=true -Dnewlib-multithread=true -Dthread-local-storage=false -Dpicolib=true -Dspecsdir=none -Dtinystdio=true \\
 \t-Dposix-console=false -Dposix-io=false -Datomic-ungetc=false -Dnewlib-global-atexit=false -Dnewlib-iconv-encodings=none -Dlite-exit=false \\
 \t-Dlibdir=lib -Dincludedir=include -Dprefix=$installPath \"\$@\"" \
 > do-arm-wii-configure

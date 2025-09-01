@@ -29,6 +29,8 @@
 /* NOTE: This ifdef MUST match the one in memset.c.  */
 #include <picolibc.h>
 
+#ifndef __STARLET__
+
 #if __ARM_FP != 0 && !defined(PREFER_SIZE_OVER_SPEED) && !defined(__OPTIMIZE_SIZE__)
 
 # if defined (__thumb2__)
@@ -38,5 +40,7 @@
 # else
 #  include "memset-arm.S"
 # endif
+
+#endif
 
 #endif
